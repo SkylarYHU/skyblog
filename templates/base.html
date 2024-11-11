@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Blog</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta name="google" content="notranslate" />
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand"><i class="fa-solid fa-mug-hot" style="color: #fa6d3f;"></i>SKYBLOG</a>
+        <span class="menu-button">☰</span>
+        <ul id="navbarNav">
+          <li><a href="#info">About / Contact</a></li>
+          <li><a href="{% url 'more_articles' %}">More Articles</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container content">
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    <div class="border-box info" id="info">
+      <div class="info-text">
+        <h3>About Me</h3>
+        <p>Hello! I'm Skylar, a blogger and web developer.</p>
+        <p>I created this website to share diverse perspectives and ideas from various voices.</p>
+        <p>Feel free to reach out if you have any questions or just want to chat!</p>
+      </div>
+      
+      <div class="social-links">
+        <a href="mailto:skylarhyn@gmail.com" target="_blank" class="social-icon">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://skylarhu.atwebpages.com/" target="_blank" class="social-icon" rel="noopener noreferrer">
+          <i class="fas fa-globe"></i>
+        </a>
+        <a href="https://github.com/SkylarYHU" target="_blank" class="social-icon" rel="noopener noreferrer">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/skylar-hu/" target="_blank" class="social-icon" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      
+      <p>&copy; Skylar Hu</p>
+      <p><strong>Email: </strong><a href="mailto:skylarhyn@gmail.com">skylarhyn@gmail.com</a></p>
+    <p><strong>Portfolio: </strong><a href="https://skylarhu.atwebpages.com" target="_blank" rel="noopener noreferrer">skylarhu.atwebpages.com</a></p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

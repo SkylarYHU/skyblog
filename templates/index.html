@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="body-container">
+    <h1 class="index-title">SKYBLOG</h1>
+
+    <div class="border-box">
+      <p class="top-text">Snapshots of daily life and reflections on the world—a mosaic of thoughts.</p>
+    </div>
+
+    <div class="content-area">
+      <div class="main-card">
+        {% if post_list %}
+        <div class="card">
+          <a href="{% url 'post_detail' post_list.0.slug %}" class="card-link">
+            <div class="card-body">
+              {% if post_list.0.image %}
+              <img src="{{ post_list.0.image.url }}" alt="{{ post_list.0.title }}" class="card-image">
+              {% endif %}
+              <p class="text-muted">{{ post_list.0.author.first_name }} {{ post_list.0.author.last_name }} | {{ post_list.0.created_on | date:"F j, Y" }}</p>
+              <h2 class="main-title">{{ post_list.0.title }}</h2>
+              <div class="text-content">
+                <p>{{ post_list.0.content | safe }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="cards-grid">
+        {% for post in post_list|slice:"1:" %}
+        <div class="card">
+          <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">
+            <div class="card-body">
+              {% if post.image %}
+              <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-image">
+              {% endif %}
+              <p class="grid-text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.created_on | date:"F j, Y" }}</p>
+              <h2 class="grid-title">{{ post.title }}</h2>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+</div>
+{% endblock %}

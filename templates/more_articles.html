@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="articles-container">
+
+
+  <h1>More Articles</h1>
+      <div class="articles-list">
+          {% for post in posts %}
+          <a href="{% url 'post_detail' post.slug %}">
+            <div class="article-item">
+              <div class="article-left">
+                <h2>{{ post.title }}</h2>
+                <!--将 post.content 放在另一个容器中，只对外部容器应用CSS样式,不会在使用safe时导致-webkit-box失效-->
+                <div class="article-content">
+                  <p>{{ post.content | safe }}</p>
+                </div>
+                <p class="article-info">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.created_on|date:"F j, Y" }}</p>
+              </div>
+              <div class="article-right">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="card-image">
+                {% endif %}
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+      </div>
+      <hr>
+
+      <div class="pagination-container">
+        <div class="pagination-button">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">&lt;</a>
+            {% else %}
+                <span class="pagination-link disabled">&lt;</span>
+            {% endif %}
+        </div>
+    
+        <div class="pagination-info">
+            <div class="page-input">
+                <input type="number" min="1" max="{{ page_obj.paginator.num_pages }}" 
+                       value="{{ page_obj.number }}" 
+                       onchange="window.location.href='?page=' + encodeURIComponent(this.value)">
+                <span aria-current="page"> of &nbsp;{{ page_obj.paginator.num_pages }}</span>
+            </div>
+        </div>
+    
+        <div class="pagination-button">
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">&gt;</a>
+            {% else %}
+                <span class="pagination-link disabled">&gt;</span>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock %}

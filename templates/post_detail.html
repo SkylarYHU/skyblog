@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<header class="detail-header">
+  <div class="circle-shape"></div>
+  <div class="post-info">
+    <h1>{{ post.title }}</h1>
+    <div class="post-meta">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.created_on }}</div>
+  </div>
+</header>
+
+<div class="detail-container">
+  <div class="main-content">
+    <div class="detail-body">
+      <p class="post-text">{{ post.content | safe }}</p>
+    </div>
+
+    <div class="comment-card">
+      <div class="comment-body">
+        {% with comments.count as total_comments %}
+          <h2>Comments ({{ total_comments }})</h2>
+        {% endwith %}
+
+        {% for comment in comments %}
+          <div class="comment-detail">
+            <p class="comment-muted">
+              {{ comment.name }} |
+              <span>{{ comment.created_on }}</span>
+            </p>
+            
+            <div class="comment-text">
+              <p>
+              {{ comment.body | linebreaks }}
+              </p>
+            </div>
+          </div>
+        {% empty %}
+          <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="leave-comment">
+      <div class="comment-form">
+          <h3>Leave a Comment</h3>
+          <form method="post">
+              {% csrf_token %}
+            <div class="form-group">
+
+              {{ comment_form.body }}
+  
+              <div class="contact-info">
+                <div class="form-name">
+                  <label for="{{ comment_form.name.id_for_label }}">Name:</label>
+                  {{ comment_form.name }}
+                </div>
+                
+                <div class="form-email">
+                  <label for="{{ comment_form.email.id_for_label }}">Email:</label>
+                  {{ comment_form.email }}
+                </div>
+              </div>
+
+            </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+  </div>
+
+  {% if messages %}
+  <script type="text/javascript">
+    let messageContent = "{% for message in messages %} {{ message }}\n{% endfor %}";
+    alert(messageContent.trim());
+  </script>
+  {% endif %}
+    
+  </div>
+</div>
+
+{% endblock content %}
