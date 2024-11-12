@@ -1,0 +1,38 @@
+.
+├── Procfile
+├── README.md
+├── blog
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── manage.py
+├── media
+├── mysite
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── project_structure.txt
+├── requirements.txt
+├── start.sh
+├── static
+│   ├── css
+│   │   └── styles.css
+│   ├── img
+│   │   └── favicon.ico
+│   └── js
+│       └── script.js
+├── staticfiles
+└── templates
+    ├── base.html
+    ├── index.html
+    ├── more_articles.html
+    └── post_detail.html
