@@ -159,7 +159,7 @@ STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_STORAGE_BUCKET_NAME = 'skyblog-web'
-AWS_S3_REGION_NAME = ' eu-north-1'
+AWS_S3_REGION_NAME = 'eu-north-1'
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -168,7 +168,7 @@ AWS_QUERYSTRING_AUTH = False
 # 定义媒体文件的 URL 路径前缀
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/'
 # 指定存储所有上传的媒体文件的目录
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # 表示使用一个 64 位整数类型的自增字段作为模型的主键字段
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
